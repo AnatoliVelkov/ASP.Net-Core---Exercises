@@ -1,0 +1,90 @@
+    public IActionResult SpeedConvertor([Bind("InputValue,CurrentType,ConvertTo,Result")] SpeedConvertorModel speedConvertorModel)
+        {
+            //Variables for input value of user for speed and current type of speed
+            decimal iv = speedConvertorModel.InputValue;
+            var ct = speedConvertorModel.CurrentType;
+
+            //If/else checks for current type of speed, input value of user for speed and calculation the result using the switch statement
+            if (ct == "км/ч")
+            {
+                if (iv == 0)
+                {
+                    return View();
+
+                }
+                else 
+                {
+                    switch (speedConvertorModel.ConvertTo.ToString())
+                    {
+                        case "км/ч":
+                            speedConvertorModel.Result = speedConvertorModel.InputValue;
+                            break;
+                        case "км/с":
+                            speedConvertorModel.Result = speedConvertorModel.InputValue * (decimal)0.000278;
+                            break;
+                        case "мили/ч":
+                            speedConvertorModel.Result = speedConvertorModel.InputValue * (decimal)0.6214;
+                            break;
+                        case "мили/с":
+                            speedConvertorModel.Result = speedConvertorModel.InputValue * (decimal)0.000173;
+                            break;
+                    }
+                }
+            }
+            else if (ct == "км/с")
+            {
+                switch (speedConvertorModel.ConvertTo.ToString())
+                {
+                    case "км/ч":
+                        speedConvertorModel.Result = speedConvertorModel.InputValue * (decimal)3600.00;
+                        break;
+                    case "км/с":
+                        speedConvertorModel.Result = speedConvertorModel.InputValue;
+                        break;
+                    case "мили/ч":
+                        speedConvertorModel.Result = speedConvertorModel.InputValue * (decimal)2236.94;
+                        break;
+                    case "мили/с":
+                        speedConvertorModel.Result = speedConvertorModel.InputValue * (decimal)1000.00;
+                        break;
+                }
+            }
+            else if (ct == "мили/ч")
+            {
+                switch (speedConvertorModel.ConvertTo.ToString())
+                {
+                    case "км/ч":
+                        speedConvertorModel.Result = speedConvertorModel.InputValue * (decimal)1.6093;
+                        break;
+                    case "км/с":
+                        speedConvertorModel.Result = speedConvertorModel.InputValue * (decimal)0.000447;
+                        break;
+                    case "мили/ч":
+                        speedConvertorModel.Result = speedConvertorModel.InputValue;
+                        break;
+                    case "мили/с":
+                        speedConvertorModel.Result = speedConvertorModel.InputValue * (decimal)0.000278;
+                        break;
+                }
+            }
+            else if (ct == "мили/с")
+            {
+                switch (speedConvertorModel.ConvertTo.ToString())
+                {
+                    case "км/ч":
+                        speedConvertorModel.Result = speedConvertorModel.InputValue * (decimal)5793.64;
+                        break;
+                    case "км/с":
+                        speedConvertorModel.Result = speedConvertorModel.InputValue * (decimal)1.6093;
+                        break;
+                    case "мили/ч":
+                        speedConvertorModel.Result = speedConvertorModel.InputValue * (decimal)3600.00;
+                        break;
+                    case "мили/с":
+                        speedConvertorModel.Result = speedConvertorModel.InputValue;
+                        break;
+                }
+            }
+            ViewBag.ResultBag = speedConvertorModel.Result.ToString();
+            return View();
+        }
