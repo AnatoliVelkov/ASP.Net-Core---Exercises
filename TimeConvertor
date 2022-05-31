@@ -1,0 +1,124 @@
+  public IActionResult TimeConvertor([Bind("InputValue,CurrentType,ConvertTo,Result")] TimeConvertorModel timeConvertorModel)
+        {
+            //Variables for input value of user for time and current type of time
+            decimal iv = timeConvertorModel.InputValue;
+            var ct = timeConvertorModel.CurrentType;
+
+            //If/else checks for current type of time, input value of user for time and calculation the result using the switch statement
+            if (ct == "години")
+            {
+                if (iv == 0)
+                {
+                    return View();
+
+                }
+                else
+                {
+                    switch (timeConvertorModel.ConvertTo.ToString())
+                    {
+                        case "години":
+                            timeConvertorModel.Result = timeConvertorModel.InputValue;
+                            break;
+                        case "месеца":
+                            timeConvertorModel.Result = timeConvertorModel.InputValue * (decimal)12.00;
+                            break;
+                        case "седмици":
+                            timeConvertorModel.Result = timeConvertorModel.InputValue * (decimal)52.1786;
+                            break;
+                        case "дни":
+                            timeConvertorModel.Result = timeConvertorModel.InputValue * (decimal)365.25;
+                            break;
+                        case "часа":
+                            timeConvertorModel.Result = timeConvertorModel.InputValue * (decimal)8766.00;
+                            break;
+                    }
+                }
+            }
+            else if (ct == "месеца")
+            {
+                switch (timeConvertorModel.ConvertTo.ToString())
+                {
+                    case "години":
+                        timeConvertorModel.Result = timeConvertorModel.InputValue *(decimal)0.0833;
+                        break;
+                    case "месеца":
+                        timeConvertorModel.Result = timeConvertorModel.InputValue;
+                        break;
+                    case "седмици":
+                        timeConvertorModel.Result = timeConvertorModel.InputValue * (decimal)4.3482;
+                        break;
+                    case "дни":
+                        timeConvertorModel.Result = timeConvertorModel.InputValue * (decimal)30.4375;
+                        break;
+                    case "часа":
+                        timeConvertorModel.Result = timeConvertorModel.InputValue * (decimal)730.5;
+                        break;
+                }
+            }
+            else if (ct == "седмици")
+            {
+                switch (timeConvertorModel.ConvertTo.ToString())
+                {
+                    case "години":
+                        timeConvertorModel.Result = timeConvertorModel.InputValue * (decimal)0.019165;
+                        break;
+                    case "месеца":
+                        timeConvertorModel.Result = timeConvertorModel.InputValue * (decimal)0.229979;
+                        break;
+                    case "седмици":
+                        timeConvertorModel.Result = timeConvertorModel.InputValue;
+                        break;
+                    case "дни":
+                        timeConvertorModel.Result = timeConvertorModel.InputValue * (decimal)7.00;
+                        break;
+                    case "часа":
+                        timeConvertorModel.Result = timeConvertorModel.InputValue * (decimal)168.00;
+                        break;
+                }
+            }
+            else if (ct == "дни")
+            {
+                switch (timeConvertorModel.ConvertTo.ToString())
+                {
+                    case "години":
+                        timeConvertorModel.Result = timeConvertorModel.InputValue * (decimal)0.00273785;
+                        break;
+                    case "месеца":
+                        timeConvertorModel.Result = timeConvertorModel.InputValue * (decimal)0.032854;
+                        break;
+                    case "седмици":
+                        timeConvertorModel.Result = timeConvertorModel.InputValue * (decimal)0.142857;
+                        break;
+                    case "дни":
+                        timeConvertorModel.Result = timeConvertorModel.InputValue;
+                        break;
+                    case "часа":
+                        timeConvertorModel.Result = timeConvertorModel.InputValue * (decimal)24.00;
+                        break;
+                }
+            }
+            else if (ct == "часа")
+            {
+                switch (timeConvertorModel.ConvertTo.ToString())
+                {
+                    case "години":
+                        timeConvertorModel.Result = timeConvertorModel.InputValue * (decimal)0.00011408;
+                        break;
+                    case "месеца":
+                        timeConvertorModel.Result = timeConvertorModel.InputValue * (decimal)0.00136893;
+                        break;
+                    case "седмици":
+                        timeConvertorModel.Result = timeConvertorModel.InputValue * (decimal)0.00595238;
+                        break;
+                    case "дни":
+                        timeConvertorModel.Result = timeConvertorModel.InputValue * (decimal)0.041667;
+                        break;
+                    case "часа":
+                        timeConvertorModel.Result = timeConvertorModel.InputValue;
+                        break;
+                }
+            }
+
+            ViewBag.ResultBag = timeConvertorModel.Result.ToString();
+            return View();
+        }
