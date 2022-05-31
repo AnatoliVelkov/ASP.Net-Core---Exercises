@@ -1,0 +1,59 @@
+@model ConvertorApp.Models.SpeedConvertorModel
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<div>
+    <h4 class="text-center text-warning font-weight-bold mb-5 mt-5 p-4">Преобразуване на скорост</h4>
+    <hr />
+  
+    <div class="container">
+            <form asp-action="SpeedConvertor" method="post">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-12 form-group">
+                        <p class="font-weight-bold">Въведете стойност:</p>
+                        <input asp-for="InputValue" id="inputValue" type="number" class="form-control" />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 form-group">
+                        <p class="font-weight-bold">От:</p>
+                        <select asp-for="CurrentType" id="SelectConvertFrom" class="form-control">
+                            <option selected="selected">км/ч</option>
+                            <option>км/с</option>
+                            <option>мили/ч</option>
+                            <option>мили/с</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 form-group">
+                        <p class="font-weight-bold">На:</p>
+                        <select asp-for="ConvertTo" id="SelectConvertTo" class="form-control">
+                            <option selected="selected">км/ч</option>
+                            <option>км/с</option>
+                            <option>мили/ч</option>
+                            <option>мили/с</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                        <input id="btnResult" onclick="Button_Click" type="submit" class="btn btn-success btn-block p-2" value="Пресметни" />
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <input id="btnClear" type="button" class="btn btn-danger btn-block p-2" value="Изчисти" />
+                    </div>
+                </div>
+                <div class="col-12">
+                    <hr />
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 mt-2 form-group">
+                    <p class="font-weight-bold">Резултат: @ViewBag.ResultBag</p>
+
+                </div>
+            </form>
+        </div>
+        <div class="row mt-4">
+            <hr />
+          
+        </div>
+</div>
+
