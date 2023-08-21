@@ -1,0 +1,30 @@
+  static void Main(string[] args)
+        {
+            var eik=Console.ReadLine();
+
+            try
+            {
+                using (var client = new TaxService.checkVatPortTypeClient())
+                {
+                    string name;
+                    bool valid;
+                    string address;
+
+                    string countryCode = "BG";
+                    string vatNumber = "201485722";
+
+                    var result = client.checkVat(ref countryCode, ref vatNumber, out valid, out name, out address);
+
+                    Console.WriteLine(result);
+                    Console.WriteLine(valid ? "Валиден булстат!!!" : "Невалиден булстат!!!");
+                    Console.WriteLine(name);
+                    Console.WriteLine(address);
+                    Console.ReadKey();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+        }
