@@ -1,4 +1,6 @@
-  static void Main(string[] args)
+https://code.4noobz.net/consume-webservice-with-csharp/
+
+static void Main(string[] args)
         {
             var eik=Console.ReadLine();
 
